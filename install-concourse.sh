@@ -2,7 +2,7 @@
 sudo amazon-linux-extras install postgresql10 vim epel -y
 sudo yum install -y postgresql-server
 sudo /usr/bin/postgresql-setup --initdb
-sudo service postgresql enable
+sudo systemctl enable postgresql
 sudo service postgresql start
 sudo su postgres -c "createuser ec2-user"
 sudo su postgres -c "createdb --owner=ec2-user atc"
@@ -37,3 +37,6 @@ WantedBy=multi-user.target
 EOF
 
 sudo mv concourse-web.service /etc/systemd/system/concourse-web.service
+
+sudo systemctl enable concourse-web
+sudo service concourse-web start
