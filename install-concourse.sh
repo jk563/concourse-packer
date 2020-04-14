@@ -2,10 +2,10 @@
 sudo amazon-linux-extras install postgresql10 vim epel -y
 sudo yum install -y postgresql-server
 sudo /usr/bin/postgresql-setup --initdb
-sudo su postgres -c "createuser ec2-user"
-sudo su postgres -c "createdb --owner=ec2-user atc"
 sudo service postgresql enable
 sudo service postgresql start
+sudo su postgres -c "createuser ec2-user"
+sudo su postgres -c "createdb --owner=ec2-user atc"
 
 # Install Concourse
 wget https://github.com/concourse/concourse/releases/download/v6.0.0/concourse-6.0.0-linux-amd64.tgz -O concourse.tgz
