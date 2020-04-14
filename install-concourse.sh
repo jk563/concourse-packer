@@ -16,7 +16,7 @@ rm concourse.tgz
 /usr/local/concourse/bin/concourse generate-key -t rsa -f /home/ec2-user/session_signing_key
 /usr/local/concourse/bin/concourse generate-key -t ssh -f /home/ec2-user/tsa_host_key
 /usr/local/concourse/bin/concourse generate-key -t ssh -f /home/ec2-user/worker_key
-cp /home/ec2-user/worker_key /home/ec2/user/authorized_worker_keys
+cp /home/ec2-user/worker_key /home/ec2-user/authorized_worker_keys
 
 # Create web service unit
 sudo cat <<EOF > /etc/systemd/system/concourse-web.service
@@ -29,7 +29,7 @@ StartLimitIntervalSec=0
 Type=simple
 Restart=always
 RestartSec=1
-User=centos
+User=ec2-user
 ExecStart=/usr/local/concourse/bin/concourse web
 
 [Install]
