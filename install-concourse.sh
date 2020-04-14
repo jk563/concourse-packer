@@ -19,7 +19,7 @@ rm concourse.tgz
 cp /home/ec2-user/worker_key /home/ec2-user/authorized_worker_keys
 
 # Create web service unit
-sudo cat <<EOF > /etc/systemd/system/concourse-web.service
+sudo cat <<EOF > concourse-web.service 
 [Unit]
 Description=Concourse Web Agent
 After=postgresql.service
@@ -35,3 +35,5 @@ ExecStart=/usr/local/concourse/bin/concourse web
 [Install]
 WantedBy=multi-user.target
 EOF
+
+sudo mv concourse-web.service /etc/systemd/system/concourse-web.service
