@@ -47,8 +47,8 @@ StartLimitIntervalSec=0
 Type=simple
 Restart=always
 RestartSec=1
-User=ec2-user
-ExecStart=sudo -E /usr/local/concourse/bin/concourse worker --work-dir /opt/concourse/worker --tsa-host 127.0.0.1:2222 --tsa-public-key /home/ec2-user/tsa_host_key.pub --tsa-worker-private-key /home/ec2-user/worker_key
+User=root
+ExecStart=/usr/local/concourse/bin/concourse worker --work-dir /opt/concourse/worker --tsa-host 127.0.0.1:2222 --tsa-public-key /home/ec2-user/tsa_host_key.pub --tsa-worker-private-key /home/ec2-user/worker_key
 
 [Install]
 WantedBy=multi-user.target
