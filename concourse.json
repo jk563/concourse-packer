@@ -1,18 +1,28 @@
 {
-  "builders": [{
-    "type": "amazon-ebs",
-    "region": "eu-west-2",
-    "source_ami_filter": {
-      "filters": {
-        "virtualization-type": "hvm",
-        "name": "amzn2-ami-hvm-2.0*",
-        "root-device-type": "ebs"
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "region": "eu-west-2",
+      "source_ami_filter": {
+        "filters": {
+          "virtualization-type": "hvm",
+          "name": "amzn2-ami-hvm-2.0*",
+          "root-device-type": "ebs"
+        },
+        "owners": "amazon",
+        "most_recent": true
       },
-      "owners": "amazon",
-      "most_recent": true
-    },
-    "instance_type": "t2.micro",
-    "ssh_username": "ec2-user",
-    "ami_name": "concourse-{{timestamp}}"
-  }]
+      "instance_type": "t2.micro",
+      "ssh_username": "ec2-user",
+      "ami_name": "concourse-{{timestamp}}"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "scripts": [
+        "install-concourse.sh"
+      ]
+    }
+  ]
 }
