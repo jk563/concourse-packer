@@ -16,7 +16,7 @@ rm concourse.tgz
 /usr/local/concourse/bin/concourse generate-key -t rsa -f /home/ec2-user/session_signing_key
 /usr/local/concourse/bin/concourse generate-key -t ssh -f /home/ec2-user/tsa_host_key
 /usr/local/concourse/bin/concourse generate-key -t ssh -f /home/ec2-user/worker_key
-cp /home/ec2-user/worker_key /home/ec2-user/authorized_worker_keys
+cp /home/ec2-user/worker_key.pub /home/ec2-user/authorized_worker_keys
 
 # Create web service unit
 sudo cat <<EOF > concourse-web.service 
@@ -48,7 +48,7 @@ Type=simple
 Restart=always
 RestartSec=1
 User=ec2-user
-ExecStart=/usr/local/concourse/bin/concourse worker --work-dir /opt/concourse/worker --tsa-host 127.0.0.1:2222 --tsa-public-key /home/ec2-user/tsa_host_key.pub --tsa-worker-private-key /home/ec2-user/worker_key
+ExecStart=sudo -E /usr/local/concourse/bin/concourse worker --work-dir /opt/concourse/worker --tsa-host 127.0.0.1:2222 --tsa-public-key /home/ec2-user/tsa_host_key.pub --tsa-worker-private-key /home/ec2-user/worker_key
 
 [Install]
 WantedBy=multi-user.target
