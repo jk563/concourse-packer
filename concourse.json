@@ -1,7 +1,7 @@
 {
   "variables": {
     "git-ref": "{{env `PACKER_CONCOURSE_GIT_REF`}}"
-  }",
+  },
   "builders": [
     {
       "type": "amazon-ebs",
