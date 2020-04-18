@@ -1,6 +1,6 @@
 {
   "variables": {
-    "git-ref": "{{env `PACKER_CONCOURSE_GIT_REF`}}"
+    "git-ref": "{{env `GIT_REF`}}"
   },
   "builders": [
     {
@@ -17,7 +17,10 @@
       },
       "instance_type": "t2.micro",
       "ssh_username": "ec2-user",
-      "ami_name": "concourse-{{timestamp}}-{{user `git-ref`}}"
+      "ami_name": "concourse-{{timestamp}}-{{user `git-ref`}}",
+      "tags": {
+        "commit": "{{user `git-ref`}}"
+      }
     }
   ],
   "provisioners": [
