@@ -30,7 +30,7 @@ Type=simple
 Restart=always
 RestartSec=1
 User=ec2-user
-ExecStart=/usr/local/concourse/bin/concourse web --add-local-user jamie:norbit --main-team-local-user jamie --session-signing-key /home/ec2-user/session_signing_key --tsa-host-key /home/ec2-user/tsa_host_key --tsa-authorized-keys /home/ec2-user/authorized_worker_keys --postgres-user ec2-user --postgres-socket /var/run/postgresql --external-url=http://ci.jamiekelly.com:8080 --aws-ssm-region eu-west-2
+ExecStart=/usr/local/concourse/bin/concourse web --add-local-user jamie:norbit --main-team-local-user jamie --session-signing-key /home/ec2-user/session_signing_key --tsa-host-key /home/ec2-user/tsa_host_key --tsa-authorized-keys /home/ec2-user/authorized_worker_keys --postgres-user ec2-user --postgres-socket /var/run/postgresql --external-url=http://ci.jamiekelly.com:8080 --aws-ssm-region eu-west-2 --aws-ssm-pipeline-secret-template /concourse/{{.Team}}/{{.Secret}}
 
 [Install]
 WantedBy=multi-user.target
