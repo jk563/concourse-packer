@@ -9,4 +9,4 @@ if test ${IMAGES_WITH_COMMIT_SHA} != 0; then
 	exit 0
 fi
 
-packer build -var "git-ref=$(COMMIT_SHA)" concourse.json
+packer build -var "git-ref=${COMMIT_SHA}" concourse.json
